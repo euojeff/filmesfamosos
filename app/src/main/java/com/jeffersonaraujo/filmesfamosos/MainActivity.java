@@ -1,15 +1,16 @@
 package com.jeffersonaraujo.filmesfamosos;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<FilmeJsonHelper> listaFilmes = new ArrayList<>();
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+
     private Context context;
 
     @Override
@@ -41,17 +45,17 @@ public class MainActivity extends AppCompatActivity {
 
         context = this;
 
+        mRecyclerView = findViewById(R.id.recycler_filmes);
+        mAdapter = new ItemAdapter();
+        mRecyclerView.setAdapter(mAdapter);
+
+        int numeroColunas = Util.calculaNumeroColunas(this);
+
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, numeroColunas));
+
         mRequestQueue = Volley.newRequestQueue(this);
 
-        configuraRecycler();
-
         request();
-    }
-
-    private  void configuraRecycler(){
-        RecyclerView mRecyclerView = findViewById(R.id.recycler_filmes);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        mRecyclerView.setAdapter(new ItemAdapter());
     }
 
     private void request(){
@@ -67,13 +71,12 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONArray itens = response.getJSONArray("results");
 
-                            Toast.makeText(getApplicationContext(), itens.length() + "", Toast.LENGTH_LONG);
-
                             StringBuilder b = new StringBuilder();
 
                             for(int i = 0; i < itens.length(); i++){
                                 listaFilmes.add(new FilmeJsonHelper(itens.getJSONObject(i)));
                             }
+                            mAdapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
                             e.printStackTrace();

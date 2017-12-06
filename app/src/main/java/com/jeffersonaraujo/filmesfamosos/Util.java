@@ -1,6 +1,8 @@
 package com.jeffersonaraujo.filmesfamosos;
 
+import android.content.Context;
 import android.net.Uri;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import java.net.MalformedURLException;
@@ -30,5 +32,12 @@ public class Util {
         }
 
         return url;
+    }
+
+    public static int calculaNumeroColunas(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        int noOfColumns = (int) (dpWidth / 100);
+        return noOfColumns;
     }
 }
