@@ -1,12 +1,15 @@
 package com.jeffersonaraujo.filmesfamosos;
 
 import android.content.Context;
-import android.content.res.Configuration;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.AttributeSet;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -39,6 +42,31 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_ordenar_avaliacao:
+                consultarMelhorClassificados();
+                return true;
+            case R.id.menu_ordenar_popular:
+                consultarPopulares();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -55,23 +83,29 @@ public class MainActivity extends AppCompatActivity {
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-        request();
+        consultarPopulares();
     }
 
-    private void request(){
+    private void consultarPopulares(){
+        consultaFilmes(Util.montarURLMaisPopular().toString());
+    }
 
-        String url = Util.buildPopularMoviesUrl().toString();
+    private void consultarMelhorClassificados(){
+        consultaFilmes(Util.montarURLMelhorClassificado().toString());
+    }
+
+    private void consultaFilmes(String query){
+
+        listaFilmes.clear();
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                (Request.Method.GET, query, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
 
                         try {
                             JSONArray itens = response.getJSONArray("results");
-
-                            StringBuilder b = new StringBuilder();
 
                             for(int i = 0; i < itens.length(); i++){
                                 listaFilmes.add(new FilmeJsonHelper(itens.getJSONObject(i)));
@@ -92,8 +126,6 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         mRequestQueue.add(jsObjRequest);
-
-
     }
 
     static class ItemHolder extends RecyclerView.ViewHolder {
