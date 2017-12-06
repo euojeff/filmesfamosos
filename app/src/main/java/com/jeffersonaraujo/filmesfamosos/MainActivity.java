@@ -1,11 +1,13 @@
 package com.jeffersonaraujo.filmesfamosos;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.jeffersonaraujo.filmesfamosos.helpers.FilmeJsonHelper;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,12 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
     private RequestQueue mRequestQueue;
 
-    private ArrayList<String> listaFilmes = new ArrayList<>();
+    private ArrayList<FilmeJsonHelper> listaFilmes = new ArrayList<>();
+
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context = this;
 
         mRequestQueue = Volley.newRequestQueue(this);
 
@@ -64,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             StringBuilder b = new StringBuilder();
 
                             for(int i = 0; i < itens.length(); i++){
-                                listaFilmes.add(itens.getJSONObject(i).getString("original_title"));
+                                listaFilmes.add(new FilmeJsonHelper(itens.getJSONObject(i)));
                             }
 
                         } catch (JSONException e) {
@@ -87,22 +95,38 @@ public class MainActivity extends AppCompatActivity {
 
     static class ItemHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
+        ImageView mImageView;
         public ItemHolder(View itemView) {
             super(itemView);
             this.mTextView = itemView.findViewById(R.id.view_item_text);
+            this.mImageView = itemView.findViewById(R.id.img_cartaz);
         }
     }
 
     class ItemAdapter extends RecyclerView.Adapter <ItemHolder> {
-        @Override public int getItemCount() {
+
+        @Override
+        public int getItemCount() {
             return listaFilmes.size();
         }
-        @Override public ItemHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+
+        @Override
+        public ItemHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View view = getLayoutInflater().inflate(R.layout.item, viewGroup, false);
             return new ItemHolder(view);
         }
-        @Override public void onBindViewHolder(ItemHolder simpleHolder, int i) {
-            simpleHolder.mTextView.setText(listaFilmes.get(i));
+
+        @Override
+        public void onBindViewHolder(ItemHolder simpleHolder, int i) {
+            try {
+
+                FilmeJsonHelper filme = listaFilmes.get(i);
+
+                simpleHolder.mTextView.setText(filme.getTitulo());
+                Picasso.with(context).load(filme.getPathCartaz()).into(simpleHolder.mImageView);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
