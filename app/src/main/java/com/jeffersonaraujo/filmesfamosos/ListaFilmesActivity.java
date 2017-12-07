@@ -1,6 +1,7 @@
 package com.jeffersonaraujo.filmesfamosos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -98,7 +99,11 @@ public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeA
 
     @Override
     public void onCardClick(String jsonFilme) {
-        Toast.makeText(this, "Abrir Filme", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(this, DetalheFilmeActivity.class);
+        intent.putExtra(DetalheFilmeActivity.BUNDLE_JSON_FILME, jsonFilme);
+
+        startActivity(intent);
     }
 
     private void consultarPopulares(){
