@@ -1,18 +1,14 @@
 package com.jeffersonaraujo.filmesfamosos;
 
 import android.content.Context;
-
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,8 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.jeffersonaraujo.filmesfamosos.helpers.FilmeJsonHelper;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,18 +23,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeAdapter.CardFilmeAdapterOnclickHandler {
 
     private RequestQueue mRequestQueue;
 
-    private ArrayList<FilmeJsonHelper> listaFilmes = new ArrayList<>();
+    private ArrayList<String> listaFilmes = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private CardFilmeAdapter mAdapter;
 
     private Context context;
 
-    private static String KEY_LISTA_CARREGADA = "KEY_LISTA_CARREGADA";
+    private static String KEY_LISTA_CARREGADA = "lista_filmes";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,12 +71,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_lista_filmes);
 
         context = this;
 
         mRecyclerView = findViewById(R.id.recycler_filmes);
-        mAdapter = new ItemAdapter();
+        mAdapter = new CardFilmeAdapter(this, this);
         mRecyclerView.setAdapter(mAdapter);
 
         int numeroColunas = Util.calculaNumeroColunas(this);
@@ -96,9 +90,15 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState == null){
             consultarPopulares();
         }else{
-            listaFilmes = (ArrayList<FilmeJsonHelper>)savedInstanceState.getSerializable(KEY_LISTA_CARREGADA);
+            listaFilmes = (ArrayList<String>)savedInstanceState.getSerializable(KEY_LISTA_CARREGADA);
+            mAdapter.setListaFilmes(listaFilmes);
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onCardClick(String jsonFilme) {
+        Toast.makeText(this, "Abrir Filme", Toast.LENGTH_LONG).show();
     }
 
     private void consultarPopulares(){
@@ -123,8 +123,9 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray itens = response.getJSONArray("results");
 
                             for(int i = 0; i < itens.length(); i++){
-                                listaFilmes.add(new FilmeJsonHelper(itens.getJSONObject(i)));
+                                listaFilmes.add(itens.getJSONObject(i).toString());
                             }
+                            mAdapter.setListaFilmes(listaFilmes);
                             mAdapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
@@ -135,45 +136,10 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-
+                        Toast.makeText(context, R.string.falha_conexao, Toast.LENGTH_LONG).show();
                     }
                 });
 
         mRequestQueue.add(jsObjRequest);
-    }
-
-    static class ItemHolder extends RecyclerView.ViewHolder {
-        ImageView mImageView;
-        public ItemHolder(View itemView) {
-            super(itemView);
-            this.mImageView = itemView.findViewById(R.id.img_cartaz);
-        }
-    }
-
-    class ItemAdapter extends RecyclerView.Adapter <ItemHolder> {
-
-        @Override
-        public int getItemCount() {
-            return listaFilmes.size();
-        }
-
-        @Override
-        public ItemHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view = getLayoutInflater().inflate(R.layout.item, viewGroup, false);
-            return new ItemHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(ItemHolder simpleHolder, int i) {
-            try {
-
-                FilmeJsonHelper filme = listaFilmes.get(i);
-
-                Picasso.with(context).load(filme.getPathCartaz()).into(simpleHolder.mImageView);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

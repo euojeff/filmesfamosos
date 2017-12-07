@@ -3,25 +3,23 @@ package com.jeffersonaraujo.filmesfamosos.helpers;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by jeff on 06/12/2017.
  */
 
-public class FilmeJsonHelper {
+public class FilmeJsonHelper{
 
-    private JSONObject json;
+    private JSONObject mJson;
 
     private static String IMAGE_ROOT = "http://image.tmdb.org/t/p/w185/";
 
-    public FilmeJsonHelper(JSONObject jsonObject){
-        this.json = jsonObject;
-    }
-
-    public String getTitulo() throws JSONException {
-        return json.getString("title");
+    public FilmeJsonHelper(String json) throws JSONException {
+        this.mJson = new JSONObject(json);
     }
 
     public String getPathCartaz() throws JSONException {
-        return IMAGE_ROOT + json.getString("poster_path");
+        return IMAGE_ROOT + mJson.getString("poster_path");
     }
 }
