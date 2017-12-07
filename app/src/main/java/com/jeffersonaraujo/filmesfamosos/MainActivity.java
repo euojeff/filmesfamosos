@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Context context;
 
+    private static String KEY_LISTA_CARREGADA = "KEY_LISTA_CARREGADA";
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -67,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable(KEY_LISTA_CARREGADA, listaFilmes);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -79,11 +87,18 @@ public class MainActivity extends AppCompatActivity {
 
         int numeroColunas = Util.calculaNumeroColunas(this);
 
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, numeroColunas));
+        GridLayoutManager manager = new GridLayoutManager(this, numeroColunas);
+
+        mRecyclerView.setLayoutManager(manager);
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-        consultarPopulares();
+        if(savedInstanceState == null){
+            consultarPopulares();
+        }else{
+            listaFilmes = (ArrayList<FilmeJsonHelper>)savedInstanceState.getSerializable(KEY_LISTA_CARREGADA);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private void consultarPopulares(){
@@ -129,11 +144,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static class ItemHolder extends RecyclerView.ViewHolder {
-        TextView mTextView;
         ImageView mImageView;
         public ItemHolder(View itemView) {
             super(itemView);
-            this.mTextView = itemView.findViewById(R.id.view_item_text);
             this.mImageView = itemView.findViewById(R.id.img_cartaz);
         }
     }
@@ -157,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
 
                 FilmeJsonHelper filme = listaFilmes.get(i);
 
-                simpleHolder.mTextView.setText(filme.getTitulo());
                 Picasso.with(context).load(filme.getPathCartaz()).into(simpleHolder.mImageView);
             } catch (JSONException e) {
                 e.printStackTrace();
