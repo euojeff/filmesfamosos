@@ -3,7 +3,6 @@ package com.jeffersonaraujo.filmesfamosos;
 import android.content.Context;
 import android.net.Uri;
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,7 +47,6 @@ public class Util {
     public static int calculaNumeroColunas(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int noOfColumns = (int) (dpWidth / 80);
-        return noOfColumns;
+        return (int) (dpWidth / 80);
     }
 }

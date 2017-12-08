@@ -64,7 +64,8 @@ class CardFilmeAdapter extends RecyclerView.Adapter <CardFilmeAdapter.CardFilmeH
     }
 
     @Override
-    public void onBindViewHolder(CardFilmeAdapter.CardFilmeHolder holder, final int i) {
+    public void onBindViewHolder(CardFilmeAdapter.CardFilmeHolder holder, int i) {
+        final int posicao = i;
         try {
 
             FilmeJsonHelper filme = new FilmeJsonHelper(listaFilmes.get(i));
@@ -72,7 +73,7 @@ class CardFilmeAdapter extends RecyclerView.Adapter <CardFilmeAdapter.CardFilmeH
             holder.mCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mHandler.onCardClick(listaFilmes.get(i));
+                    mHandler.onCardClick(listaFilmes.get(posicao));
                 }
             });
 
