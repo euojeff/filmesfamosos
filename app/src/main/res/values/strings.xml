@@ -3,4 +3,8 @@
     <string name="menu_populares">Populares</string>
     <string name="menu_avaliacao">Melhores Avaliados</string>
     <string name="falha_conexao">Falha na conexão!</string>
+    <string name="detalhes_filme">Detalhes do filme</string>
+    <string name="detalhe_titulo_original">Título Original:</string>
+    <string name="detalhe_avaliacao">Avaliação:</string>
+    <string name="detalhe_lancamento">Lançamento:</string>
 </resources>

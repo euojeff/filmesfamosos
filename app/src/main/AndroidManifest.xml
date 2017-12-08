@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetalheFilmeActivity"></activity>
+        <activity android:name=".DetalheFilmeActivity"
+            android:label="@string/detalhes_filme"></activity>
     </application>
 
 </manifest>
