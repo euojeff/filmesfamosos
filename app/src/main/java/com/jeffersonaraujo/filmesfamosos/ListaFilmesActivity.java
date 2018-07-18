@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -108,10 +109,12 @@ public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeA
 
     private void consultarPopulares(){
         consultaFilmes(Util.montarURLMaisPopular().toString());
+        Log.d(getClass().getName(), "Consulta API Populares");
     }
 
     private void consultarMelhorClassificados(){
         consultaFilmes(Util.montarURLMelhorClassificado().toString());
+        Log.d(getClass().getName(), "Consulta API Melhor Classificados");
     }
 
     private void consultaFilmes(String query){

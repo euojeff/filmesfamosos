@@ -7,4 +7,7 @@
     <string name="detalhe_titulo_original">Título Original:</string>
     <string name="detalhe_avaliacao">Avaliação:</string>
     <string name="detalhe_lancamento">Lançamento:</string>
+    <string name="detalhe_trailes">Trailers:</string>
+    <string name="detalhe_Reviews">Reviews:</string>
+    <string name="falha_youtube">Falha ao abrir Trailer!</string>
 </resources>
