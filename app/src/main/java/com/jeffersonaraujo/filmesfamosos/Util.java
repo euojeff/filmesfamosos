@@ -63,6 +63,6 @@ public class Util {
     public static int calculaNumeroColunas(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        return (int) (dpWidth / 80);
+        return (int) (dpWidth / 85);
     }
 }

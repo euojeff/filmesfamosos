@@ -48,6 +48,17 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
     private TextView sinopseTv;
     private String idFilme;
 
+    private static String KEY_LISTA_TRAILERS = "lista_trailers";
+    private static String KEY_LISTA_REVIEWS = "lista_reviews";
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable(KEY_LISTA_TRAILERS, mListaTrailers);
+    }
+
     private void preencherInformacoes(){
         try {
             Picasso.with(this).load(mhelper.getBackDrop()).into(backDropIV);
@@ -89,7 +100,7 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
             try {
                 mhelper = new FilmeJsonHelper(getIntent().getStringExtra(BUNDLE_JSON_FILME));
                 preencherInformacoes();
-                consultarTrailers();
+                consultarTrailers(savedInstanceState);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -106,42 +117,51 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
         mTrailersRV.setLayoutManager(horizontalLayoutManagaer);
     }
 
-    private void consultarTrailers(){
+    private void consultarTrailers(Bundle savedInstanceState){
 
         String query = Util.montarURLFilmeVideos(idFilme).toString();
 
         mListaTrailers.clear();
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, query, null, new Response.Listener<JSONObject>() {
+        if(savedInstanceState != null
+                && savedInstanceState.getSerializable(KEY_LISTA_TRAILERS) != null){
+            mListaTrailers = (ArrayList<TrailerFilmeJsonHelper>)savedInstanceState.getSerializable(KEY_LISTA_TRAILERS);
+            atualizarRecycleTrailers();
+        }else{
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.GET, query, null, new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject response) {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-                        try {
-                            JSONArray itens = response.getJSONArray("results");
+                            try {
+                                JSONArray itens = response.getJSONArray("results");
 
-                            for(int i = 0; i < itens.length(); i++){
-                                mListaTrailers.add(new TrailerFilmeJsonHelper(itens.getJSONObject(i).toString()));
-                                Log.d("YOUTUBE>>>>>>>>>>", itens.getJSONObject(i).toString());
+                                for(int i = 0; i < itens.length(); i++){
+                                    mListaTrailers.add(new TrailerFilmeJsonHelper(itens.getJSONObject(i).toString()));
+                                    Log.d("YOUTUBE>>>>>>>>>>", itens.getJSONObject(i).toString());
+                                }
+                                atualizarRecycleTrailers();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            //TODO setar adapter filme aqui
-                            mTrailerAdapter.setListaTrailers(mListaTrailers);
-                            //mAdapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                }, new Response.ErrorListener() {
+                    }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), R.string.falha_conexao, Toast.LENGTH_LONG).show();
-                    }
-                });
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), R.string.falha_conexao, Toast.LENGTH_LONG).show();
+                        }
+                    });
 
-        mRequestQueue.add(jsObjRequest);
+            mRequestQueue.add(jsObjRequest);
+        }
+    }
+
+    private void atualizarRecycleTrailers(){
+        mTrailerAdapter.setListaTrailers(mListaTrailers);
+        mTrailerAdapter.notifyDataSetChanged();
     }
 
     @Override

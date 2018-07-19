@@ -3,11 +3,13 @@ package com.jeffersonaraujo.filmesfamosos.helpers;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by jeff on 17/07/2018.
  */
 
-public class TrailerFilmeJsonHelper {
+public class TrailerFilmeJsonHelper implements Serializable {
 
     private JSONObject mJson;
 
