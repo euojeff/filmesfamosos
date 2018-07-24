@@ -110,7 +110,7 @@
                 android:padding="15dp"
                 android:id="@+id/recycler_trailer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:orientation="horizontal"/>
+                android:layout_height="wrap_content" android:orientation="horizontal"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,6 +118,11 @@
                 android:text="@string/detalhe_Reviews"
                 android:textStyle="bold"
                 android:paddingStart="15dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:padding="15dp"
+                android:id="@+id/recycler_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

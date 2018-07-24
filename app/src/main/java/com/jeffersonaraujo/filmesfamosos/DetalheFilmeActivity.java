@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jeffersonaraujo.filmesfamosos.helpers.FilmeJsonHelper;
+import com.jeffersonaraujo.filmesfamosos.helpers.ReviewJsonHelper;
 import com.jeffersonaraujo.filmesfamosos.helpers.TrailerFilmeJsonHelper;
 import com.squareup.picasso.Picasso;
 
@@ -35,9 +36,12 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
 
     private FilmeJsonHelper mhelper;
     private ArrayList<TrailerFilmeJsonHelper> mListaTrailers = new ArrayList<>();
+    private ArrayList<ReviewJsonHelper> mListaReviews = new ArrayList<>();
 
     private RecyclerView mTrailersRV;
+    private RecyclerView mReviewsRV;
     private CardTrailerAdapter mTrailerAdapter;
+    private CardReviewAdapter mReviewsAdapter;
 
     private ImageView cartazIV;
     private ImageView backDropIV;
@@ -57,6 +61,7 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
         super.onSaveInstanceState(outState);
 
         outState.putSerializable(KEY_LISTA_TRAILERS, mListaTrailers);
+        outState.putSerializable(KEY_LISTA_REVIEWS, mListaReviews);
     }
 
     private void preencherInformacoes(){
@@ -95,12 +100,14 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
         mRequestQueue = Volley.newRequestQueue(this);
 
         configuraTrailers();
+        configuraReviews();
 
         if(getIntent().hasExtra(BUNDLE_JSON_FILME)){
             try {
                 mhelper = new FilmeJsonHelper(getIntent().getStringExtra(BUNDLE_JSON_FILME));
                 preencherInformacoes();
                 consultarTrailers(savedInstanceState);
+                consultarReviews(savedInstanceState);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -117,17 +124,71 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
         mTrailersRV.setLayoutManager(horizontalLayoutManagaer);
     }
 
+    private void configuraReviews(){
+
+        mReviewsRV = findViewById(R.id.recycler_reviews);
+        mReviewsAdapter = new CardReviewAdapter(this);
+        mReviewsRV.setAdapter(mReviewsAdapter);
+
+        LinearLayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mReviewsRV.setLayoutManager(lm);
+    }
+
+    private void consultarReviews(Bundle savedInstanceState){
+
+        String query = Util.montarURLFilmeReviews(idFilme).toString();
+
+        if(savedInstanceState != null
+                && savedInstanceState.getSerializable(KEY_LISTA_REVIEWS) != null){
+            mListaReviews = (ArrayList<ReviewJsonHelper>)savedInstanceState.getSerializable(KEY_LISTA_REVIEWS);
+            atualizarRecycleReviews();
+        }else{
+
+            mListaReviews.clear();
+
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.GET, query, null, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                JSONArray itens = response.getJSONArray("results");
+
+                                for(int i = 0; i < itens.length(); i++){
+                                    mListaReviews.add(new ReviewJsonHelper(itens.getJSONObject(i).toString()));
+                                    Log.d("REVIEWS>>>>>>>>>>", itens.getJSONObject(i).toString());
+                                }
+                                atualizarRecycleReviews();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), R.string.falha_conexao, Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+            mRequestQueue.add(jsObjRequest);
+        }
+    }
+
     private void consultarTrailers(Bundle savedInstanceState){
 
         String query = Util.montarURLFilmeVideos(idFilme).toString();
-
-        mListaTrailers.clear();
 
         if(savedInstanceState != null
                 && savedInstanceState.getSerializable(KEY_LISTA_TRAILERS) != null){
             mListaTrailers = (ArrayList<TrailerFilmeJsonHelper>)savedInstanceState.getSerializable(KEY_LISTA_TRAILERS);
             atualizarRecycleTrailers();
         }else{
+
+            mListaTrailers.clear();
+
             JsonObjectRequest jsObjRequest = new JsonObjectRequest
                     (Request.Method.GET, query, null, new Response.Listener<JSONObject>() {
 
@@ -162,6 +223,11 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
     private void atualizarRecycleTrailers(){
         mTrailerAdapter.setListaTrailers(mListaTrailers);
         mTrailerAdapter.notifyDataSetChanged();
+    }
+
+    private void atualizarRecycleReviews(){
+        mReviewsAdapter.setListaReviews(mListaReviews);
+        mReviewsAdapter.notifyDataSetChanged();
     }
 
     @Override
