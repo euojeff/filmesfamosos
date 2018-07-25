@@ -17,6 +17,18 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
+        <ToggleButton
+            android:id="@+id/btn_favoritar_detalhe"
+            android:button="@android:drawable/btn_star"
+            android:background="@android:color/transparent"
+            android:textOn=""
+            android:textOff=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_back_filme_detalhe"
+            app:layout_constraintBottom_toTopOf="@id/img_miniatura_filme_detalhe"/>
+
         <ImageView
             android:id="@+id/img_miniatura_filme_detalhe"
             android:layout_width="wrap_content"
@@ -137,6 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/lb_reviews_detalhe"/>
+
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>
