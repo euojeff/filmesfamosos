@@ -42,4 +42,7 @@ public class FilmeJsonHelper{
     public String getId() throws JSONException {
         return mJson.getString("id");
     }
+    public String getJson(){
+        return mJson.toString();
+    }
 }

@@ -2,6 +2,7 @@
     <string name="app_name">Filmes Famosos</string>
     <string name="menu_populares">Mais popular</string>
     <string name="menu_avaliacao">Melhor avaliado</string>
+    <string name="menu_favoritos">Favoritos</string>
     <string name="falha_conexao">Falha na conexão!</string>
     <string name="detalhes_filme">Detalhes do filme</string>
     <string name="detalhe_titulo_original">Título Original:</string>

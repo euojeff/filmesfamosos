@@ -144,7 +144,7 @@ public class DetalheFilmeActivity extends AppCompatActivity implements CardTrail
             public void onClick(View v) {
                 if(favoritarTB.isChecked()){
                     FilmeFavoritoEntry filme =
-                            new FilmeFavoritoEntry(idFilme, tituloTv.getText().toString(), new Date());
+                            new FilmeFavoritoEntry(idFilme, tituloTv.getText().toString(), new Date(), mhelper.getJson());
                     new AsyncTask<FilmeFavoritoEntry, Void, Void>(){
                         @Override
                         protected Void doInBackground(FilmeFavoritoEntry... filme) {

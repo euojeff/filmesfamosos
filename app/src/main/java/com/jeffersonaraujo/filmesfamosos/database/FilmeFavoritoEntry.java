@@ -14,21 +14,32 @@ public class FilmeFavoritoEntry {
     private int id;
     private String key;
     private String title;
+    private String json;
     @ColumnInfo(name = "updated_at")
     private Date updatedAt;
 
     @Ignore
-    public FilmeFavoritoEntry(String key, String title, Date updatedAt) {
+    public FilmeFavoritoEntry(String key, String title, Date updatedAt, String json) {
         this.key = key;
         this.title = title;
         this.updatedAt = updatedAt;
+        this.json = json;
     }
 
-    public FilmeFavoritoEntry(int id, String key, String title, Date updatedAt) {
+    public FilmeFavoritoEntry(int id, String key, String title, Date updatedAt, String json) {
         this.id = id;
         this.key = key;
         this.title = title;
         this.updatedAt = updatedAt;
+        this.json = json;
+    }
+
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
     }
 
     public int getId() {

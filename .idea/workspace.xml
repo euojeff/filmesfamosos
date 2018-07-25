@@ -10,17 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="050dac68-db63-48f7-a8c1-bd8f00a52614" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeModelFactory.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeViewModel.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/AppDatabase.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/DateConverter.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoEntry.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesViewModel.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detalhe_filme.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detalhe_filme.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoEntry.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoEntry.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/FilmeJsonHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/FilmeJsonHelper.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change beforePath="$PROJECT_DIR$/gradle.properties" afterPath="$PROJECT_DIR$/gradle.properties" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,7 +111,80 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ListaFilmesActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="497">
+              <caret line="142" column="44" lean-forward="false" selection-start-line="142" selection-start-column="44" selection-end-line="142" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ListaFilmesViewModel.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesViewModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CardFilmeAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/CardFilmeAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
+              <folding>
+                <element signature="e#1234#1235#0" expanded="true" />
+                <element signature="e#1280#1281#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DetalheFilmeActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="165" column="5" lean-forward="false" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
+              <folding>
+                <element signature="e#4468#4867#0" expanded="true" />
+                <element signature="e#4866#4867#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="menu.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="49" />
+              <folding>
+                <element signature="e#176#200#0" expanded="true" />
+                <element signature="e#368#392#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -148,6 +219,10 @@
       <find>save</find>
       <find>saveinstan</find>
       <find>rati</find>
+      <find>Mais po</find>
+      <find>menu_populares</find>
+      <find>menu_ordenar_avaliacao</find>
+      <find>mhelper</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2006,7 +2081,6 @@
       <list>
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/FilmeHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/MainActivity.java" />
@@ -2019,14 +2093,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_filme.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/APIHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/VideosFilmeJsonHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/FilmeJsonHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_Trailer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/CardTrailerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_trailer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/Util.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/TrailerFilmeJsonHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/ReviewJsonHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_review.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/CardReviewAdapter.java" />
@@ -2040,9 +2111,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/AddTaskViewModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeViewModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeModelFactory.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoEntry.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoDao.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoEntry.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/FilmeJsonHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesViewModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesActivity.java" />
       </list>
     </option>
   </component>
@@ -2125,7 +2201,7 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="show.do.not.ask.upgrade.gradle.plugin" value="3.0.0" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1532537833550" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1532543547066" />
     <property name="android.profiler.active" value="true" />
   </component>
   <component name="RecentsManager">
@@ -2503,6 +2579,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="8" y="0" width="1715" height="1035" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2523,7 +2600,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24985057" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24985057" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.49790794" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969433" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2584,26 +2661,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_lista_filmes.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="49" lean-forward="false" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="78" lean-forward="false" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
-          <folding>
-            <element signature="e#932#956#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -2662,16 +2719,6 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/jre/jdk/Contents/Home/jre/lib/resources.jar!/javax/swing/plaf/metal/icons/sortDown.png">
       <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
@@ -2770,16 +2817,6 @@
       </provider>
       <provider editor-type-id="android-manifest">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/CardFilmeAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-171">
-          <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/6690376c5fbff2e329e8149faccf54e9/res/values/values.xml">
@@ -2891,22 +2928,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="94" column="12" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="101" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/CardTrailerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -2961,38 +2982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="127" column="71" lean-forward="true" selection-start-line="127" selection-start-column="71" selection-end-line="127" selection-end-column="71" />
-          <folding>
-            <element signature="e#4468#4867#0" expanded="true" />
-            <element signature="e#4866#4867#0" expanded="true" />
-            <element signature="e#4959#6036#0" expanded="true" />
-            <element signature="e#6035#6036#0" expanded="true" />
-            <element signature="e#8016#8843#0" expanded="true" />
-            <element signature="e#8842#8843#0" expanded="true" />
-            <element signature="e#8845#9150#0" expanded="true" />
-            <element signature="e#9052#9074#0" expanded="true" />
-            <element signature="e#9149#9150#0" expanded="true" />
-            <element signature="e#9807#10642#0" expanded="true" />
-            <element signature="e#10641#10642#0" expanded="true" />
-            <element signature="e#10644#10949#0" expanded="true" />
-            <element signature="e#10851#10873#0" expanded="true" />
-            <element signature="e#10948#10949#0" expanded="true" />
-            <element signature="e#11746#11768#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/FilmeJsonHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -3009,14 +2998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeViewModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -3025,10 +3006,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="49" />
+          <folding>
+            <element signature="e#176#200#0" expanded="true" />
+            <element signature="e#368#392#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/helpers/FilmeJsonHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="45" column="32" lean-forward="false" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+          <folding>
+            <element signature="e#1455#1456#0" expanded="false" />
+            <element signature="e#1494#1495#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/DetalheFilmeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="165" column="5" lean-forward="false" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
+          <folding>
+            <element signature="e#4468#4867#0" expanded="true" />
+            <element signature="e#4866#4867#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/database/FilmeFavoritoDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/CardFilmeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
+          <folding>
+            <element signature="e#1234#1235#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-26/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="362" column="18" lean-forward="false" selection-start-line="362" selection-start-column="18" selection-end-line="362" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="142" column="44" lean-forward="false" selection-start-line="142" selection-start-column="44" selection-end-line="142" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jeffersonaraujo/filmesfamosos/ListaFilmesViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
