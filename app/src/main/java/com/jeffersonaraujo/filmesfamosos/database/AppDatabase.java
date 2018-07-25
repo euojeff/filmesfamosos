@@ -7,6 +7,12 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.util.Log;
 
+
+/**
+ *
+ * Baseado em https://github.com/udacity/ud851-Exercises/tree/student/Lesson09b-ToDo-List-AAC/T09b.10-Solution-AddViewModelToAddTaskActivity
+ *
+ */
 @Database(entities = {FilmeFavoritoEntry.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
