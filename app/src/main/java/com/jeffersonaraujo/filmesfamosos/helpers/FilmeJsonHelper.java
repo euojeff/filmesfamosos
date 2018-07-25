@@ -18,32 +18,31 @@ public class FilmeJsonHelper{
     public FilmeJsonHelper(String json) throws JSONException {
         this.mJson = new JSONObject(json);
     }
-
     public String getPathCartaz() throws JSONException {
         return IMAGE_ROOT + TAMANHO_MINIATURA + mJson.getString("poster_path");
     }
-
     public String getBackDrop() throws JSONException {
         return IMAGE_ROOT + TAMANHO_GRANDE + mJson.getString("backdrop_path");
     }
-
     public String getTitulo() throws JSONException {
         return mJson.getString("title");
     }
-
     public String getTituloOriginal() throws JSONException {
         return mJson.getString("original_title");
     }
-
     public String getAvaliacao() throws JSONException {
         return mJson.getString("vote_average");
     }
-
     public String getDataLancamento() throws JSONException {
         return mJson.getString("release_date");
     }
-
     public String getSinopse() throws JSONException {
         return mJson.getString("overview");
+    }
+    public String getId() throws JSONException {
+        return mJson.getString("id");
+    }
+    public String getJson(){
+        return mJson.toString();
     }
 }

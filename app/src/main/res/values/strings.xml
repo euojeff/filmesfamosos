@@ -2,9 +2,14 @@
     <string name="app_name">Filmes Famosos</string>
     <string name="menu_populares">Mais popular</string>
     <string name="menu_avaliacao">Melhor avaliado</string>
+    <string name="menu_favoritos">Favoritos</string>
     <string name="falha_conexao">Falha na conexão!</string>
     <string name="detalhes_filme">Detalhes do filme</string>
     <string name="detalhe_titulo_original">Título Original:</string>
     <string name="detalhe_avaliacao">Avaliação:</string>
     <string name="detalhe_lancamento">Lançamento:</string>
+    <string name="detalhe_trailes">Trailers:</string>
+    <string name="detalhe_Reviews">Reviews:</string>
+    <string name="falha_youtube">Falha ao abrir Trailer!</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>

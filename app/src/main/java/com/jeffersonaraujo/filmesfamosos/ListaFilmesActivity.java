@@ -1,11 +1,15 @@
 package com.jeffersonaraujo.filmesfamosos;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,18 +21,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.jeffersonaraujo.filmesfamosos.database.FilmeFavoritoEntry;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeAdapter.CardFilmeAdapterOnclickHandler {
 
     private RequestQueue mRequestQueue;
 
     private ArrayList<String> listaFilmes = new ArrayList<>();
+    private ArrayList<String> listaFavoritos = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
     private CardFilmeAdapter mAdapter;
@@ -36,6 +43,9 @@ public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeA
     private Context context;
 
     private static String KEY_LISTA_CARREGADA = "lista_filmes";
+    private static String KEY_MENU_SELECIONADO = "menu_selecionado";
+
+    private Integer menuSelecionado = null;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,6 +60,8 @@ public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeA
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        menuSelecionado = item.getItemId();
+
         switch (item.getItemId()){
             case R.id.menu_ordenar_avaliacao:
                 consultarMelhorClassificados();
@@ -57,9 +69,40 @@ public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeA
             case R.id.menu_ordenar_popular:
                 consultarPopulares();
                 return true;
+            case R.id.menu_favoritos:
+                atualizarFavoritos();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void configuraViewModel() {
+        ListaFilmesViewModel viewModel = ViewModelProviders.of(this).get(ListaFilmesViewModel.class);
+        viewModel.getFilmesFavoritos().observe(this, new Observer<List<FilmeFavoritoEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<FilmeFavoritoEntry> favoritos) {
+
+                listaFavoritos.clear();
+
+                for(FilmeFavoritoEntry favorito: favoritos){
+                    if(favorito.getJson() != null){
+                        listaFavoritos.add(favorito.getJson());
+                    }
+                }
+
+                atualizarFavoritos();
+            }
+        });
+    }
+
+    private void atualizarFavoritos(){
+            listaFilmes = (ArrayList<String>)listaFavoritos.clone();
+
+            if(menuSelecionado != null && menuSelecionado.intValue() == R.id.menu_favoritos){
+                mAdapter.setListaFilmes(listaFilmes);
+                mAdapter.notifyDataSetChanged();
+            }
     }
 
     @Override
@@ -67,6 +110,7 @@ public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeA
         super.onSaveInstanceState(outState);
 
         outState.putSerializable(KEY_LISTA_CARREGADA, listaFilmes);
+        outState.putSerializable(KEY_MENU_SELECIONADO, menuSelecionado);
     }
 
     @Override
@@ -88,10 +132,13 @@ public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeA
 
         mRequestQueue = Volley.newRequestQueue(this);
 
+        configuraViewModel();
+
         if(savedInstanceState == null){
             consultarPopulares();
         }else{
             listaFilmes = (ArrayList<String>)savedInstanceState.getSerializable(KEY_LISTA_CARREGADA);
+            menuSelecionado = (Integer)savedInstanceState.getSerializable(KEY_MENU_SELECIONADO);
             mAdapter.setListaFilmes(listaFilmes);
             mAdapter.notifyDataSetChanged();
         }
@@ -108,10 +155,12 @@ public class ListaFilmesActivity extends AppCompatActivity implements CardFilmeA
 
     private void consultarPopulares(){
         consultaFilmes(Util.montarURLMaisPopular().toString());
+        Log.d(getClass().getName(), "Consulta API Populares");
     }
 
     private void consultarMelhorClassificados(){
         consultaFilmes(Util.montarURLMelhorClassificado().toString());
+        Log.d(getClass().getName(), "Consulta API Melhor Classificados");
     }
 
     private void consultaFilmes(String query){

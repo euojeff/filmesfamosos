@@ -15,28 +15,44 @@ public class Util {
 
     private static String TMDB_API = BuildConfig.TMDB_API_KEY;
 
-    private static String TMDB_POPULAR_BASE_URL = "http://api.themoviedb.org/3";
-    private static String POPULAR_QUERY = "movie/popular";
-    private static String MELHOR_CLASSIFICADO_QUERY = "movie/top_rated";
+    private static String TMDB_POPULAR_BASE_URL = "http://api.themoviedb.org/3/movie";
+    private static String LISTA_POPULAR_QUERY = "popular";
+    private static String LISTA_MELHOR_CLASSIFICADO_QUERY = "top_rated";
+    private static String FILME_VIDEOS_QUERY = "videos";
+    private static String FILME_REVIEWS_QUERY = "reviews";
+
     private static String API_KEY_PARAM = "api_key";
 
     public static URL montarURLMelhorClassificado() {
-        return buildMoviesUrl(MELHOR_CLASSIFICADO_QUERY);
+        return buildMoviesUrl(LISTA_MELHOR_CLASSIFICADO_QUERY, null);
     }
 
     public static URL montarURLMaisPopular() {
-        return buildMoviesUrl(POPULAR_QUERY);
+        return buildMoviesUrl(LISTA_POPULAR_QUERY, null);
     }
 
-    public static URL buildMoviesUrl(String recursoPath) {
-        Uri builtUri = Uri.parse(TMDB_POPULAR_BASE_URL).buildUpon()
-                .appendEncodedPath(recursoPath)
-                .appendQueryParameter(API_KEY_PARAM, TMDB_API)
-                .build();
+    public static URL montarURLFilmeReviews(String idFilme){
+        return buildMoviesUrl(FILME_REVIEWS_QUERY, idFilme);
+    }
+
+    public static URL montarURLFilmeVideos(String idFilme){
+        return buildMoviesUrl(FILME_VIDEOS_QUERY, idFilme);
+    }
+
+    private static URL buildMoviesUrl(String recursoPath, String idFilme) {
+
+        Uri.Builder builder = Uri.parse(TMDB_POPULAR_BASE_URL).buildUpon();
+
+        if(idFilme != null){
+            builder.appendEncodedPath(idFilme);
+        }
+
+        builder.appendEncodedPath(recursoPath);
+        builder.appendQueryParameter(API_KEY_PARAM, TMDB_API);
 
         URL url = null;
         try {
-            url = new URL(builtUri.toString());
+            url = new URL(builder.build().toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -47,6 +63,6 @@ public class Util {
     public static int calculaNumeroColunas(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        return (int) (dpWidth / 80);
+        return (int) (dpWidth / 85);
     }
 }
